@@ -32,49 +32,45 @@ public class CarRentalCompany {
         // individual rental vehicles
         individual.setRentalVehicles(hatchback);
 
-        // daily price policy
-        PricePolicy dailyPricePolicy = new DailyPricePolicy();
-
-        // monthly price policy
-        PricePolicy monthlyPricePolicy = new MonthlyPricePolicy();
-
         // corporate daily rent Sedan
-        dailyPricePolicy.setRentalPolicy(8, sedan.getAge()*5);
-        sedan.setPricePolicy(dailyPricePolicy);
-        System.out.println(corporate.rent(sedan,5));
+        rent(new Corporate(), sedan, new DailyPricePolicy(),
+                sedan.getAge()*5, 8,5 );
 
         // corporate daily rent Suv
-        dailyPricePolicy.setRentalPolicy(10,0);
-        suv.setPricePolicy(dailyPricePolicy);
-        System.out.println(corporate.rent(suv,3));
+        rent(new Corporate(), suv, new DailyPricePolicy(),
+                0, 10,3 );
 
         // corporate daily rent Hatchback
-        dailyPricePolicy.setRentalPolicy(15,2);
-        hatchback.setPricePolicy(dailyPricePolicy);
-        System.out.println(corporate.rent(hatchback, 15));
+        rent(new Corporate(), hatchback, new DailyPricePolicy(),
+                2, 15,15 );
 
 
         // corporate monthly rent Sedan
-        monthlyPricePolicy.setRentalPolicy(4,0);
-        sedan.setPricePolicy(monthlyPricePolicy);
-        System.out.println(corporate.rent(sedan, 2));
+        rent(new Corporate(), sedan, new MonthlyPricePolicy(),
+                0, 4,2 );
+
 
         // corporate monthly rent Hatchback
-        monthlyPricePolicy.setRentalPolicy(8,0);
-        hatchback.setPricePolicy(monthlyPricePolicy);
-        System.out.println(corporate.rent(hatchback, 3));
+        rent(new Corporate(), hatchback, new MonthlyPricePolicy(),
+                0, 8,3 );
 
         // individual daily price policy
-        dailyPricePolicy.setRentalPolicy(6, 0);
-        hatchback.setPricePolicy(dailyPricePolicy);
-        System.out.println(individual.rent(hatchback, 4));
+        rent(new Individual(), hatchback, new DailyPricePolicy(),
+                0, 6,4 );
+
 
         // individual monthly price policy
-        monthlyPricePolicy.setRentalPolicy(4,12);
-        hatchback.setPricePolicy(monthlyPricePolicy);
-        System.out.println(individual.rent(hatchback, 5));
+        rent(new Individual(), hatchback, new MonthlyPricePolicy(),
+                12, 4,5 );
 
 
 
 
-    }}
+    }
+
+    public static void rent(Customer customer, Vehicle vehicle, PricePolicy pricePolicy, int rentalDiscountRate, int factor, int rentalPeriod){
+        pricePolicy.setRentalPolicy(factor, rentalDiscountRate);
+        vehicle.setPricePolicy(pricePolicy);
+        System.out.println(customer.rent(vehicle, 4));
+    }
+}
