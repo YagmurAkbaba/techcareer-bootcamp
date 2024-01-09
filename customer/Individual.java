@@ -1,7 +1,7 @@
 package homework.customer;
 
 import homework.vehicle.Hatchback;
-import homework.rent.RentalType;
+
 import homework.vehicle.Vehicle;
 
 import java.util.ArrayList;
@@ -10,10 +10,11 @@ import java.util.List;
 public class Individual extends Customer {
 
     @Override
-    public void rent(Vehicle vehicle, RentalType rentalType) {
-        if (vehicle instanceof Hatchback) {
-            vehicle.rent(rentalType);
+    public int rent(Vehicle vehicle, int rentalPeriod) {
+        if (rentalVehicles.contains(vehicle) && vehicle instanceof Hatchback) {
+           return vehicle.rent(rentalPeriod);
         }
+        return 0;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package homework.vehicle;
 
 import homework.pricePolicy.PricePolicy;
-import homework.rent.RentalType;
+
 
 import java.util.List;
 
@@ -20,14 +20,6 @@ public abstract class Vehicle {
         setRentalPrice(rentalPrice);
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public String getFuel() {
-        return fuel;
-    }
-
     public int getRentalPrice() {
         return pricePolicy.getRentalPrice(rentalPrice);
     }
@@ -40,9 +32,11 @@ public abstract class Vehicle {
         this.pricePolicy = pricePolicy;
     }
 
-    public PricePolicy getPricePolicy() {
-        return pricePolicy;
+    public int getAge() {
+        return age;
     }
 
-    public abstract void rent(RentalType rentalType);
+    public int rent(int rentalPeriod){
+        return rentalPeriod * getRentalPrice();
+    }
 }

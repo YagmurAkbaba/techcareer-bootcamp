@@ -1,16 +1,16 @@
 package homework.customer;
 
-import homework.rent.RentalType;
+
 import homework.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Customer {
-    CustomerType customerType;
+
     List<Vehicle> rentalVehicles = new ArrayList<>();
 
-    public abstract void rent(Vehicle vehicle, RentalType rentalType);
+    public abstract int rent(Vehicle vehicle, int rentalPeriod);
 
     public void showRentalVehicles(){
         int i = 1;

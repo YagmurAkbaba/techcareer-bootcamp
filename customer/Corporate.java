@@ -1,11 +1,14 @@
 package homework.customer;
 
-import homework.rent.RentalType;
+
 import homework.vehicle.Vehicle;
 
 public class Corporate extends Customer {
     @Override
-    public void rent(Vehicle vehicle, RentalType rentalType) {
-        vehicle.rent(rentalType);
+    public int rent(Vehicle vehicle, int rentalPeriod) {
+        if (rentalVehicles.contains(vehicle)){
+          return  vehicle.rent( rentalPeriod);
+        }
+        return 0;
     }
 }
